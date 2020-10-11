@@ -1,5 +1,6 @@
 package org.launchcode.techjobs_oo;
 
+import java.lang.reflect.Field;
 import java.util.Objects;
 
 public class Job {
@@ -21,13 +22,13 @@ public class Job {
         this.id = nextId++;
     }
 
-    public Job(int id,
+    public Job(
                String name,
                Employer employer,
                Location location,
                PositionType positionType,
                CoreCompetency coreCompetency) {
-        this.id = id;
+        this.id = new Job().id;
         this.name = name;
         this.employer = employer;
         this.location = location;
@@ -35,8 +36,23 @@ public class Job {
         this.coreCompetency = coreCompetency;
     }
 
-    // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
+    // TODO: Add custom equals and hashCode
+    //  methods. Consider two Job objects
+    //  "equal" when their id fields
     //  match.
+
+    public static String toString(Job j) {
+        String template = "ID: %s\n Name: %s\n Employer: %s\n Location: %s\n Position Type: %s\n Core Competency: %s";
+
+        String name = (j.getName().equals("")) ? "Data Not Available" : j.getName();
+        String employer = (j.getEmployer().getValue().equals("")) ? "Data Not Available" : j.getEmployer().getValue();
+        String location = (j.getLocation().getValue().equals("")) ? "Data Not Available" : j.getLocation().getValue();
+        String position = (j.getPositionType().getValue().equals("")) ? "Data Not Available" : j.getPositionType().getValue();
+        String coreCompetency = (j.getCoreCompetency().getValue().equals("")) ? "Data Not Available" : j.getCoreCompetency().getValue();
+
+
+        return String.format(template, j.getId(), name, employer, location, position, coreCompetency);
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -100,4 +116,5 @@ public class Job {
     public void setCoreCompetency(CoreCompetency coreCompetency) {
         this.coreCompetency = coreCompetency;
     }
+
 }
