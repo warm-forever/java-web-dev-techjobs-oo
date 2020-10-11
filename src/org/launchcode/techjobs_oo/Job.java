@@ -1,7 +1,10 @@
 package org.launchcode.techjobs_oo;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.lang.reflect.Field;
 import java.util.Objects;
+
 
 public class Job {
 
@@ -41,7 +44,7 @@ public class Job {
     //  "equal" when their id fields
     //  match.
 
-    public static String toString(Job j) {
+    public static String toString( Job j) {
         String template = "ID: %s\n Name: %s\n Employer: %s\n Location: %s\n Position Type: %s\n Core Competency: %s";
 
         String name = (j.getName().equals("")) ? "Data Not Available" : j.getName();
